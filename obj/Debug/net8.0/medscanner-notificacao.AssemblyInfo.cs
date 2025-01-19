@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("medscanner-notificacao")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+41d81c8b277821b493ed03ec1b2b826d0b7e943a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d42d329ee62cd35273055abe5bf2266a9080dd2c")]
 [assembly: System.Reflection.AssemblyProductAttribute("medscanner-notificacao")]
 [assembly: System.Reflection.AssemblyTitleAttribute("medscanner-notificacao")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

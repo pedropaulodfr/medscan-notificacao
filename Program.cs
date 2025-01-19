@@ -12,6 +12,39 @@ class Program
 {
     static void Main(string[] args)
     {
+        Console.WriteLine("Programa iniciado. Aguardando o horário de execução...");
+
+        while (true)
+        {
+            var agora = DateTime.Now;
+
+            // Verifica se é 5h da manhã
+            if (agora.Hour == 5 && agora.Minute == 0)
+            {
+                Console.WriteLine($"Iniciando envio de e-mails às {agora}");
+
+                try
+                {
+                    VerificarEEnviarEmails();
+                    Console.WriteLine("Envio concluído. Aguardando o próximo dia...");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Erro durante execução: {ex.Message}");
+                }
+
+                // Aguarda até o próximo dia para evitar múltiplas execuções
+                Thread.Sleep(24 * 60 * 60 * 1000); // 24 horas em milissegundos
+            }
+
+            // Aguarda 1 minuto antes de verificar novamente
+            Thread.Sleep(60 * 1000);
+        }
+
+    }
+
+    static void VerificarEEnviarEmails()
+    {
         // String de conexão com o banco de dados
         string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 
@@ -26,7 +59,7 @@ class Program
                                         JOIN Pacientes P on P.Id = CC.Paciente_Id
                                         JOIN Unidades U on U.Id = M.Unidade_Id
                                         WHERE DATEDIFF(DAY, GETDATE(), CC.DataRetorno) BETWEEN 0 AND 15");
-        
+
         string queryEmailTemplate = "SELECT [Titulo], [Corpo] FROM Emails WHERE Identificacao = 'NotificacaoRetorno' AND Ativo = 1";
 
         try
@@ -37,7 +70,7 @@ class Program
             string titulo = string.Empty;
             string corpo = string.Empty;
 
-            if(emailTemplateTable.Rows.Count > 0)
+            if (emailTemplateTable.Rows.Count > 0)
             {
                 titulo = emailTemplateTable.Rows[0]["Titulo"].ToString();
                 corpo = emailTemplateTable.Rows[0]["Corpo"].ToString();
@@ -46,7 +79,7 @@ class Program
             foreach (DataRow row in usuariosTable.Rows)
             {
                 string nome = row["Nome"].ToString();
-                string email = row["Email"].ToString(); 
+                string email = row["Email"].ToString();
                 string medicamento = row["Medicamento"].ToString();
                 string dataRetorno = row["DataRetorno"].ToString();
 
