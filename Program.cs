@@ -12,60 +12,43 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Programa iniciado. Aguardando o horário de execução...");
+        Console.WriteLine("Programa iniciado. Aguardando execução...");
 
-        while (true)
-        {
-            var agora = DateTime.Now;
+        CriarNotificacoes();
+        VerificarEEnviarEmails();
+    }
 
-            // Verifica se é 5h da manhã
-            if (agora.Hour == 5 && agora.Minute == 0)
-            {
-                Console.WriteLine($"Iniciando envio de e-mails às {agora}");
-
-                try
-                {
-                    VerificarEEnviarEmails();
-                    Console.WriteLine("Envio concluído. Aguardando o próximo dia...");
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Erro durante execução: {ex.Message}");
-                }
-
-                // Aguarda até o próximo dia para evitar múltiplas execuções
-                Thread.Sleep(24 * 60 * 60 * 1000); // 24 horas em milissegundos
-            }
-
-            // Aguarda 1 minuto antes de verificar novamente
-            Thread.Sleep(60 * 1000);
-        }
-
+    static void CriarNotificacoes()
+    {
+        DatabaseHelper.ExecuteStoreProcedure("CriaNotificacao");
     }
 
     static void VerificarEEnviarEmails()
     {
-        // String de conexão com o banco de dados
-        string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-
         // Query para buscar usuários que devem receber o e-mail
         string queryUsuarios = string.Format(@"SELECT
-                                        CONVERT(DATE, CC.DataRetorno, 103) DataRetorno,
-                                        M.Identificacao  + ' ' + M.Concentracao + ' ' + U.Identificacao Medicamento,
-                                        P.Nome Nome,
-                                        P.Email
-                                        FROM CartaoControle CC 
-                                        JOIN Medicamentos M on M.Id = CC.Medicamento_Id
-                                        JOIN Pacientes P on P.Id = CC.Paciente_Id
-                                        JOIN Unidades U on U.Id = M.Unidade_Id
-                                        WHERE DATEDIFF(DAY, GETDATE(), CC.DataRetorno) BETWEEN 0 AND 15");
+                                                N.Id Notificacao_Id,
+	                                            CONVERT(DATE, CC.DataRetorno, 103) DataRetorno,
+	                                            M.Identificacao  + ' ' + M.Concentracao + ' ' + U.Identificacao Medicamento,
+	                                            P.Nome Nome,
+	                                            P.Email
+                                            FROM Notificacoes N
+                                            JOIN CartaoControle CC on CC.Id = N.CartaoControle_Id
+                                            JOIN Medicamentos M on M.Id = CC.Medicamento_Id
+                                            JOIN Pacientes P on P.Id = CC.Paciente_Id
+                                            JOIN Unidades U on U.Id = M.Unidade_Id
+                                            WHERE DATEDIFF(DAY, GETDATE(), CC.DataRetorno) BETWEEN 0 AND (SELECT TOP 1 ISNULL(DiasNotificacaoRetorno, 0) FROM Setup)
+                                            AND N.Tipo = 'NotificacaoRetorno'
+                                            AND CONVERT(DATE, N.Data, 103) = CONVERT(DATE, GETDATE(), 103)
+                                            AND ISNULL(N.Enviado, 0) = 0
+                                            AND ISNULL(P.Deletado, 0) = 0");
 
         string queryEmailTemplate = "SELECT [Titulo], [Corpo] FROM Emails WHERE Identificacao = 'NotificacaoRetorno' AND Ativo = 1";
 
         try
         {
-            DataTable emailTemplateTable = DatabaseHelper.GetDataTable(queryEmailTemplate, connectionString);
-            DataTable usuariosTable = DatabaseHelper.GetDataTable(queryUsuarios, connectionString);
+            DataTable emailTemplateTable = DatabaseHelper.GetDataTable(queryEmailTemplate);
+            DataTable usuariosTable = DatabaseHelper.GetDataTable(queryUsuarios);
 
             string titulo = string.Empty;
             string corpo = string.Empty;
@@ -90,6 +73,10 @@ class Program
                                     .Replace("{ICONECALENDARIO}", "📆");
 
                 Email.EnviarEmail(email, titulo, body);
+
+                // Query para marcar a Notificacao como "Enviada"
+                string queryUpdateNotificacao = string.Format(@"UPDATE Notificacoes SET Enviado = 1 WHERE Id = '{0}'", row["Notificacao_Id"].ToString());
+                DatabaseHelper.Update(queryUpdateNotificacao);
             }
 
             Console.WriteLine("E-mails enviados com sucesso!");

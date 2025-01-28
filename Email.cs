@@ -23,7 +23,7 @@ namespace medscanner_notificacao
             string smtpSenha = string.Empty;
 
             string querySetupSMTP = "SELECT smtpHost, smtpPort, smtpUser, smtpPassword, URLWeb FROM Setup";
-            DataTable SMTPTable = DatabaseHelper.GetDataTable(querySetupSMTP, connectionString);
+            DataTable SMTPTable = DatabaseHelper.GetDataTable(querySetupSMTP);
 
             if (SMTPTable.Rows.Count > 0)
             {
