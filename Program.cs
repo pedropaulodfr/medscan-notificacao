@@ -26,7 +26,10 @@ class Program
     static void VerificarEEnviarEmails()
     {
         // Query para buscar usuários que devem receber o e-mail
-        string queryUsuarios = string.Format(@"SELECT
+        string queryUsuarios = string.Format(@"
+                                            DECLARE @DiasRetorno int = (SELECT TOP 1 ISNULL(DiasNotificacaoRetorno, 0) FROM Setup)
+                                            
+                                            SELECT
                                                 N.Id Notificacao_Id,
 	                                            CONVERT(DATE, CC.DataRetorno, 103) DataRetorno,
 	                                            M.Identificacao  + ' ' + M.Concentracao + ' ' + U.Identificacao Medicamento,
@@ -37,7 +40,7 @@ class Program
                                             JOIN Medicamentos M on M.Id = CC.Medicamento_Id
                                             JOIN Pacientes P on P.Id = CC.Paciente_Id
                                             JOIN Unidades U on U.Id = M.Unidade_Id
-                                            WHERE DATEDIFF(DAY, GETDATE(), CC.DataRetorno) BETWEEN 0 AND (SELECT TOP 1 ISNULL(DiasNotificacaoRetorno, 0) FROM Setup)
+                                            WHERE DATEDIFF(DAY, GETDATE(), CC.DataRetorno) BETWEEN 0 AND @DiasRetorno
                                             AND N.Tipo = 'NotificacaoRetorno'
                                             AND CONVERT(DATE, N.Data, 103) = CONVERT(DATE, GETDATE(), 103)
                                             AND ISNULL(N.Enviado, 0) = 0
