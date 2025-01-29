@@ -11,12 +11,12 @@
       "RelativeMoniker": "D:0:0:{068DC96B-9C32-4B04-8113-ABB1460ECBE1}|medscanner-notificacao.csproj|solutionrelative:databasehelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{068DC96B-9C32-4B04-8113-ABB1460ECBE1}|medscanner-notificacao.csproj|d:\\documentos\\projects\\medic-scanner\\medscanner-notificacao\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{068DC96B-9C32-4B04-8113-ABB1460ECBE1}|medscanner-notificacao.csproj|solutionrelative:app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{068DC96B-9C32-4B04-8113-ABB1460ECBE1}|medscanner-notificacao.csproj|d:\\documentos\\projects\\medic-scanner\\medscanner-notificacao\\email.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{068DC96B-9C32-4B04-8113-ABB1460ECBE1}|medscanner-notificacao.csproj|solutionrelative:email.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{068DC96B-9C32-4B04-8113-ABB1460ECBE1}|medscanner-notificacao.csproj|d:\\documentos\\projects\\medic-scanner\\medscanner-notificacao\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{068DC96B-9C32-4B04-8113-ABB1460ECBE1}|medscanner-notificacao.csproj|solutionrelative:app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     }
   ],
   "DocumentGroupContainers": [
@@ -46,26 +46,25 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "App.config",
               "DocumentMoniker": "D:\\Documentos\\projects\\medic-scanner\\medscanner-notificacao\\App.config",
               "RelativeDocumentMoniker": "App.config",
               "ToolTip": "D:\\Documentos\\projects\\medic-scanner\\medscanner-notificacao\\App.config",
               "RelativeToolTip": "App.config",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAUAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAQAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
-              "WhenOpened": "2025-01-19T16:51:42.484Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-19T16:51:42.484Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "Email.cs",
               "DocumentMoniker": "D:\\Documentos\\projects\\medic-scanner\\medscanner-notificacao\\Email.cs",
               "RelativeDocumentMoniker": "Email.cs",
               "ToolTip": "D:\\Documentos\\projects\\medic-scanner\\medscanner-notificacao\\Email.cs",
               "RelativeToolTip": "Email.cs",
-              "ViewState": "AQIAABoAAAAAAAAAAAAQwCgAAAAhAAAA",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAABkAAABMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-19T16:45:16.872Z"
             },
@@ -77,10 +76,9 @@
               "RelativeDocumentMoniker": "DatabaseHelper.cs",
               "ToolTip": "D:\\Documentos\\projects\\medic-scanner\\medscanner-notificacao\\DatabaseHelper.cs",
               "RelativeToolTip": "DatabaseHelper.cs",
-              "ViewState": "AQIAAAEAAAAAAAAAAAAAwAwAAAAgAAAA",
+              "ViewState": "AQIAAD0AAAAAAAAAAAAAABMAAAA5AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-19T16:43:19.085Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-19T16:43:19.085Z"
             },
             {
               "$type": "Document",
@@ -90,7 +88,7 @@
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "D:\\Documentos\\projects\\medic-scanner\\medscanner-notificacao\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AQIAABEAAAAAAAAAAAAAABQAAAAoAAAA",
+              "ViewState": "AQIAAEwAAAAAAAAAAAAkwFQAAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-19T14:54:25.254Z",
               "EditorCaption": ""

@@ -60,29 +60,31 @@ class Program
             {
                 titulo = emailTemplateTable.Rows[0]["Titulo"].ToString();
                 corpo = emailTemplateTable.Rows[0]["Corpo"].ToString();
+
+                foreach (DataRow row in usuariosTable.Rows)
+                {
+                    string nome = row["Nome"].ToString();
+                    string email = row["Email"].ToString();
+                    string medicamento = row["Medicamento"].ToString();
+                    string dataRetorno = row["DataRetorno"].ToString();
+
+                    string body = corpo.Replace("{NOME}", nome)
+                                        .Replace("{MEDICAMENTO}", medicamento)
+                                        .Replace("{DATARETORNO}", dataRetorno)
+                                        .Replace("{ICONEMEDICAMENTO}", "💊")
+                                        .Replace("{ICONECALENDARIO}", "📆");
+
+                    Email.EnviarEmail(email, titulo, body);
+
+                    // Query para marcar a Notificacao como "Enviada"
+                    string queryUpdateNotificacao = string.Format(@"UPDATE Notificacoes SET Enviado = 1 WHERE Id = '{0}'", row["Notificacao_Id"].ToString());
+                    DatabaseHelper.Update(queryUpdateNotificacao);
+                }
+
+                Console.WriteLine("E-mails enviados com sucesso!");
             }
-
-            foreach (DataRow row in usuariosTable.Rows)
-            {
-                string nome = row["Nome"].ToString();
-                string email = row["Email"].ToString();
-                string medicamento = row["Medicamento"].ToString();
-                string dataRetorno = row["DataRetorno"].ToString();
-
-                string body = corpo.Replace("{NOME}", nome)
-                                    .Replace("{MEDICAMENTO}", medicamento)
-                                    .Replace("{DATARETORNO}", dataRetorno)
-                                    .Replace("{ICONEMEDICAMENTO}", "💊")
-                                    .Replace("{ICONECALENDARIO}", "📆");
-
-                Email.EnviarEmail(email, titulo, body);
-
-                // Query para marcar a Notificacao como "Enviada"
-                string queryUpdateNotificacao = string.Format(@"UPDATE Notificacoes SET Enviado = 1 WHERE Id = '{0}'", row["Notificacao_Id"].ToString());
-                DatabaseHelper.Update(queryUpdateNotificacao);
-            }
-
-            Console.WriteLine("E-mails enviados com sucesso!");
+            else
+                Console.Error.WriteLine("ERRO! Os E-mails não foram enviados, pois esse tipo de Notificação não possui um template ativo!");
         }
         catch (Exception ex)
         {
