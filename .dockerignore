@@ -1,0 +1,23 @@
+# Ignore arquivos de build
+bin/
+obj/
+
+# Ignore arquivos de configuração do usuário
+.vscode/
+*.user
+*.suo
+
+# Ignore arquivos de log
+*.log
+
+# Ignore arquivos temporários
+*.tmp
+*.temp
+
+# Ignore arquivos de backup
+*.bak
+*.old
+
+# Ignore arquivos de sistema
+.DS_Store
+Thumbs.db
