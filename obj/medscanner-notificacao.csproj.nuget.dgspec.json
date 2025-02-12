@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Documentos\\projects\\medic-scanner\\medscanner-notificacao\\medscanner-notificacao.csproj": {}
+    "d:\\Documentos\\projects\\medic-scanner\\medscanner-notificacao\\medscanner-notificacao.csproj": {}
   },
   "projects": {
-    "D:\\Documentos\\projects\\medic-scanner\\medscanner-notificacao\\medscanner-notificacao.csproj": {
+    "d:\\Documentos\\projects\\medic-scanner\\medscanner-notificacao\\medscanner-notificacao.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Documentos\\projects\\medic-scanner\\medscanner-notificacao\\medscanner-notificacao.csproj",
+        "projectUniqueName": "d:\\Documentos\\projects\\medic-scanner\\medscanner-notificacao\\medscanner-notificacao.csproj",
         "projectName": "medscanner-notificacao",
-        "projectPath": "D:\\Documentos\\projects\\medic-scanner\\medscanner-notificacao\\medscanner-notificacao.csproj",
+        "projectPath": "d:\\Documentos\\projects\\medic-scanner\\medscanner-notificacao\\medscanner-notificacao.csproj",
         "packagesPath": "C:\\Users\\pedro\\.nuget\\packages\\",
-        "outputPath": "D:\\Documentos\\projects\\medic-scanner\\medscanner-notificacao\\obj\\",
+        "outputPath": "d:\\Documentos\\projects\\medic-scanner\\medscanner-notificacao\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\pedro\\AppData\\Roaming\\NuGet\\NuGet.Config",

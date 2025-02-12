@@ -1,0 +1,3 @@
+# Ignore as pastas de build
+bin/
+obj/

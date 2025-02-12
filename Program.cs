@@ -12,6 +12,23 @@ class Program
 {
     static void Main(string[] args)
     {
+        while (true)
+        {
+            if(DateTime.Now.Hour == 6 && DateTime.Now.Minute == 00)
+            {
+                Console.Clear();
+                IniciarPrograma();
+            }
+            else
+            {
+                Console.WriteLine("Aguardando o horário correto para iniciar o programa...");
+                System.Threading.Thread.Sleep(60000);
+            }
+        }
+    }
+
+    static void IniciarPrograma()
+    {
         Console.WriteLine("Programa iniciado. Aguardando execução...");
 
         CriarNotificacoes();
