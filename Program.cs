@@ -12,6 +12,9 @@ class Program
 {
     static void Main(string[] args)
     {
+        // Inicia o servidor HTTP em uma tarefa separada
+        var hostTask = CreateHostBuilder(args).Build().RunAsync();
+
         while (true)
         {
             if(DateTime.Now.Hour == 6 && DateTime.Now.Minute == 00)
@@ -108,4 +111,20 @@ class Program
             Console.WriteLine($"Erro: {ex.Message}");
         }
     }
+
+    // Configuração do servidor HTTP
+    static IHostBuilder CreateHostBuilder(string[] args) =>
+        Host.CreateDefaultBuilder(args)
+            .ConfigureWebHostDefaults(webBuilder =>
+            {
+                webBuilder.Configure(app =>
+                {
+                    app.Run(async context =>
+                    {
+                        // Resposta simples para manter o servidor ativo
+                        await context.Response.WriteAsync("Servidor em execução...");
+                    });
+                })
+                .UseUrls("http://0.0.0.0:10000"); // Escuta na porta 10000
+            });
 }
