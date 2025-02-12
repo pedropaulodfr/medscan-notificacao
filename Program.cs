@@ -6,6 +6,11 @@ using System.Net.Mail;
 using System.Configuration;
 using System.Data;
 using medscanner_notificacao;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
 
 
 class Program
