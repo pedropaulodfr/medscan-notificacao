@@ -7,7 +7,9 @@ app = 'medscan-notificacao-0mzgog'
 primary_region = 'gig'
 
 [build]
-processes = ['app']
+
+[processes]
+  app = "dotnet run"
 
 [[vm]]
   memory = '1gb'
