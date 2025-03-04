@@ -15,7 +15,7 @@ class Program
     {
         while (true)
         {
-            if(DateTime.Now.Hour == 6 && DateTime.Now.Minute == 00)
+            if(DateTime.Now.Hour == 20 && DateTime.Now.Minute == 14)
             {
                 Console.Clear();
                 IniciarPrograma();
